@@ -34,6 +34,7 @@ var endGame = function() {
         }
     }
     else {
+        // Reset player health and stats
         playerHealth = 100;
         playerMoney = 10;
         playerScore = 0;
@@ -43,7 +44,9 @@ var endGame = function() {
         var playAgain = window.confirm("Would you like to play again?");
 
         if (playAgain) {
+            //once again asks user for a new player name
             playerName = window.prompt("What Is Your Robot's Name?");
+            // once again shows users their starting stats
             window.alert(playerName + " Is Ready to Fight!\n" + "Starting Health: " + playerHealth + "\nStarting Money: " + playerMoney + "\nTotal Score: " + playerScore);
             startGame();
         }
@@ -111,6 +114,7 @@ var startGame = function() {
             else if (promptFight === "SKIP") {
                 skipChoice = window.confirm("Are you sure you want to SKIP your fight with " + enemyName + "?" + "\nYour money will reduce by 5.\nCurrent Amount: " + playerMoney)
 
+                // If skipChoice is true
                 if (skipChoice) {
                     playerMoney -= 5;
                     if (playerMoney < 0) {
@@ -150,6 +154,7 @@ var startGame = function() {
     
 };
 
+// Calls the startGame() function once the page has loaded
 startGame();
 
 
