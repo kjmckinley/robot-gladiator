@@ -1,7 +1,7 @@
 // ROBOT GLADIATOR
 
 
-var playerName = window.prompt("What is your robot's name?");
+var playerName = window.prompt("What Is Your Robot's Name?");
 var playerHealth = 100;
 var playerAttack = 25;
 
@@ -56,7 +56,7 @@ var fight = function(enemyName) {
 
         // For if the user types in SKIP
         else if (promptFight === "SKIP") {
-            skipChoice = window.confirm("Are you sure you want to SKIP your fight with " + enemyName + "?" + " Your total money will reduce by 5. Current Amount: " + playerMoney)
+            skipChoice = window.confirm("Are you sure you want to SKIP your fight with " + enemyName + "?" + " Your money will reduce by 5.   Current Amount: " + playerMoney)
 
             if (skipChoice) {
                 playerMoney -= 5;
@@ -65,7 +65,7 @@ var fight = function(enemyName) {
                     break;
                 }
                 else {
-                    window.alert ("You paid off " + enemyName + " and moved on to the next fight." + " Money Remaining: " + playerMoney);
+                    window.alert ("You paid off " + enemyName + ". Money Remaining: " + playerMoney);
                     break;
                 }     
             }
@@ -76,7 +76,7 @@ var fight = function(enemyName) {
 
         // For invalid input 
         else {
-            window.alert("Please enter valid input. Try again!");
+            window.alert ("ERROR: " + "'" + promptFight + "'" + " Is Not Valid Input.\nPlease Try Again!");
         }
     }
 
@@ -86,6 +86,7 @@ var fight = function(enemyName) {
 for (var i = 0; i < enemyNames.length; i++) {
     var pickedEnemyName = enemyNames[i];
     enemyHealth = 50;
+    window.alert("Welcome to Robot Gladiators!\nROUND: " + (i + 1) + " - " + playerName + " VS " + pickedEnemyName);
     fight (pickedEnemyName);
 }
 
