@@ -1,10 +1,12 @@
 // ROBOT GLADIATOR
 
-
 var playerName = window.prompt("What Is Your Robot's Name?");
 var playerHealth = 100;
 var playerAttack = 25;
+var playerMoney = 10;
 var playerScore = 0;
+
+window.alert(playerName + " Is Ready to Fight!\n" + "Starting Health: " + playerHealth + "\nStarting Money: " + playerMoney + "\nTotal Score: " + playerScore);
 
 console.log("Name: " + playerName, "Health: " + playerHealth, "AP: " + playerAttack);
 
@@ -12,15 +14,16 @@ var enemyNames = ["Roberto", "Amy Andriod", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 20;
 
-var playerMoney = 10;
-
-
 var endGame = function() {
     
     window.alert("GAME OVER\nCuurent Health: " + playerHealth + "\nRemaining Money: " + playerMoney + "\nTotal Score: " + playerScore);
-    var playAgain = window.confirm("Would you like to play again?");
 
     if (playerHealth > 0) {
+
+        window.alert("Great Job! Your Robot Survived... For Now...")
+
+        var playAgain = window.confirm("Would you like to play again?");
+
         if (playAgain) {
             startGame();
         }
@@ -32,16 +35,20 @@ var endGame = function() {
         playerHealth = 100;
         playerMoney = 10;
         playerScore = 0;
-        window.alert("Your Robot Fighter Cannot Go On.\nYou Must Start With a New Fighter")
+
+        window.alert("Your Robot Fighter " + playerName + "Has Fallen In Battle.\nYou Must Start With a New Fighter")
+
+        var playAgain = window.confirm("Would you like to play again?");
+
         if (playAgain) {
+            playerName = window.prompt("What Is Your Robot's Name?");
+            window.alert(playerName + " Is Ready to Fight!\n" + "Starting Health: " + playerHealth + "\nStarting Money: " + playerMoney + "\nTotal Score: " + playerScore);
             startGame();
         }
         else {
             window.alert("Thanks for Playing!")
         }
     }
-    
-
     
 }
 
