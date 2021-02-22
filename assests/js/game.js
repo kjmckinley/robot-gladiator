@@ -10,7 +10,7 @@ console.log("Name: " + playerName, "Health: " + playerHealth, "AP: " + playerAtt
 
 var enemyNames = ["Roberto", "Amy Andriod", "Robo Trumble"];
 var enemyHealth = 50;
-var enemyAttack = 50;
+var enemyAttack = 20;
 
 var playerMoney = 10;
 
@@ -32,7 +32,7 @@ var endGame = function() {
         playerHealth = 100;
         playerMoney = 10;
         playerScore = 0;
-        window.alert("Your Robot Fighter Cannot Go On. You Must Start With a New Fighter")
+        window.alert("Your Robot Fighter Cannot Go On.\nYou Must Start With a New Fighter")
         if (playAgain) {
             startGame();
         }
