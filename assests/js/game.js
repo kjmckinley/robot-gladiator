@@ -52,12 +52,19 @@ var fight = function(enemyName) {
             }
         } 
         else if (promptFight === "SKIP") {
-            skipChoice = window.confirm("Are you sure you want to SKIP your fight with " + enemyName + "?")
+            skipChoice = window.confirm("Are you sure you want to SKIP your fight with " + enemyName + "?" + " Your total money will reduce by 5. Current Amount: " + playerMoney)
 
             if (skipChoice) {
-                playerMoney -= 4;
-                window.alert ("You paid off " + enemyName + " and moved on to the next fight." + " Money Remaining: " + playerMoney);
-                break;
+                playerMoney -= 5;
+                if (playerMoney < 0) {
+                    window.alert(playerName + " has run out of money and can't continue to fight. Try again!");
+                    break;
+                }
+                else {
+                    window.alert ("You paid off " + enemyName + " and moved on to the next fight." + " Money Remaining: " + playerMoney);
+                    break;
+                }
+                
             }
             else {
                 skipChoice = false;
