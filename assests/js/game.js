@@ -10,7 +10,7 @@ console.log("Name: " + playerName, "Health: " + playerHealth, "AP: " + playerAtt
 
 var enemyNames = ["Roberto", "Amy Andriod", "Robo Trumble"];
 var enemyHealth = 50;
-var enemyAttack = 12;
+var enemyAttack = 50;
 
 var playerMoney = 10;
 
@@ -18,7 +18,31 @@ var playerMoney = 10;
 var endGame = function() {
     
     window.alert("GAME OVER\nCuurent Health: " + playerHealth + "\nRemaining Money: " + playerMoney + "\nTotal Score: " + playerScore);
-    startGame();
+    var playAgain = window.confirm("Would you like to play again?");
+
+    if (playerHealth > 0) {
+        if (playAgain) {
+            startGame();
+        }
+        else {
+            window.alert("Thanks for Playing!")
+        }
+    }
+    else {
+        playerHealth = 100;
+        playerMoney = 10;
+        playerScore = 0;
+        window.alert("Your Robot Fighter Cannot Go On. You Must Start With a New Fighter")
+        if (playAgain) {
+            startGame();
+        }
+        else {
+            window.alert("Thanks for Playing!")
+        }
+    }
+    
+
+    
 }
 
 // START function to call anytime the player wants to play again
@@ -48,6 +72,7 @@ var startGame = function() {
                     
                     if (i === (enemyNames.length - 1)){
                         endGame();
+                        break;
                     }
                     else {
                         break;
