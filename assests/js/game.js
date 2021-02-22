@@ -6,14 +6,15 @@ var playerAttack = 25;
 var playerMoney = 10;
 var playerScore = 0;
 
-window.alert(playerName + " Is Ready to Fight!\n" + "Starting Health: " + playerHealth + "\nStarting Money: " + playerMoney + "\nTotal Score: " + playerScore);
-
-console.log("Name: " + playerName, "Health: " + playerHealth, "AP: " + playerAttack);
-
 var enemyNames = ["Roberto", "Amy Andriod", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 20;
 
+window.alert(playerName + " Is Ready to Fight!\n" + "Starting Health: " + playerHealth + "\nStarting Money: " + playerMoney + "\nTotal Score: " + playerScore);
+
+console.log("Name: " + playerName, "Health: " + playerHealth, "AP: " + playerAttack);
+
+// end() Function that takes in user response when all fighters or the player is defeated
 var endGame = function() {
     
     window.alert("GAME OVER\nCuurent Health: " + playerHealth + "\nRemaining Money: " + playerMoney + "\nTotal Score: " + playerScore);
@@ -24,11 +25,12 @@ var endGame = function() {
 
         var playAgain = window.confirm("Would you like to play again?");
 
+        // Asks user if they want to keep playing
         if (playAgain) {
             startGame();
         }
         else {
-            window.alert("Thanks for Playing!")
+            window.alert("Thanks For Playing Robot Gladiators! Come Back Soon!!")
         }
     }
     else {
@@ -46,7 +48,7 @@ var endGame = function() {
             startGame();
         }
         else {
-            window.alert("Thanks for Playing!")
+            window.alert("Thanks For Playing Robot Gladiators! Come Back Soon!!")
         }
     }
     
