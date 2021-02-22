@@ -23,7 +23,7 @@ var fight = function(enemyName) {
         promptFight = promptFight.toUpperCase();
         console.log(playerName + " has decided to " + promptFight + " this battle.");
 
-        // Set conditions for what to do if the user picks FIGHT or SKIP
+        // Set conditions for what to do if the user picks FIGHT
         if(promptFight === "FIGHT") {
             //Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
             enemyHealth -= playerAttack;
@@ -32,7 +32,9 @@ var fight = function(enemyName) {
             // Check enemy's health
             if (enemyHealth <= 0) {
                 window.alert(enemyName + " has died!");
-                console.log(playerName + " has " + playerHealth + " health left.");
+                playerMoney += 10;
+                window.alert(playerName + " has " + playerHealth + " health left and was awarded 10 monies.")
+                console.log(playerName + " has " + playerHealth + " health left and was awarded 10 monies.");
                 break;
             }
             else {
@@ -51,6 +53,8 @@ var fight = function(enemyName) {
                 window.alert(playerName + " still has " + playerHealth + " health left.");
             }
         } 
+
+        // For if the user types in SKIP
         else if (promptFight === "SKIP") {
             skipChoice = window.confirm("Are you sure you want to SKIP your fight with " + enemyName + "?" + " Your total money will reduce by 5. Current Amount: " + playerMoney)
 
@@ -63,14 +67,14 @@ var fight = function(enemyName) {
                 else {
                     window.alert ("You paid off " + enemyName + " and moved on to the next fight." + " Money Remaining: " + playerMoney);
                     break;
-                }
-                
+                }     
             }
             else {
                 skipChoice = false;
             }
         }
 
+        // For invalid input 
         else {
             window.alert("Please enter valid input. Try again!");
         }
