@@ -1,13 +1,15 @@
 // ROBOT GLADIATOR
 
 var playerName = window.prompt("What Is Your Robot's Name?");
+playerName = playerName.toUpperCase();
+console.log(playerName);
 var playerHealth = 100;
 var playerAttack = 25;
 var playerMoney = 10;
 var playerScore = 0;
 
 var enemyNames = ["Roberto", "Amy Andriod", "Robo Trumble"];
-var enemyHealth = 50;
+var enemyHealth = 75;
 var enemyAttack = 20;
 
 window.alert(playerName + " Is Ready to Fight!\n" + "Starting Health: " + playerHealth + "\nStarting Money: " + playerMoney + "\nTotal Score: " + playerScore);
@@ -39,7 +41,8 @@ var endGame = function() {
         playerMoney = 10;
         playerScore = 0;
 
-        window.alert("Your Robot Fighter " + playerName + "Has Fallen In Battle.\nYou Must Start With a New Fighter")
+        window.alert("Your Robot Fighter " + playerName + "Has Fallen In Battle.\nYou Must Start With a New Fighter");
+        playerName = playerName.toUpperCase();
 
         var playAgain = window.confirm("Would you like to play again?");
 
@@ -54,8 +57,52 @@ var endGame = function() {
             window.alert("Thanks For Playing Robot Gladiators! Come Back Soon!!")
         }
     }
-    
-}
+};
+
+// Shop function to ask player if they want to buy health or increase attack.
+var shop =function () {
+    var shopOptionPrompt = window.prompt ("WELCOME TO THE ROBO ARENA SHOP!\nWhile you're here you can select only ONE of the options below:\nREFILL Your Health\nUPGRADE Your Attack\nLEAVE the Shop");
+    console.log("original input: " + shopOptionPrompt);
+    shopOptionPrompt = shopOptionPrompt.toUpperCase();
+    console.log ("input changed to upper case: " + shopOptionPrompt);
+
+    // using a SWITCH statement for practice
+    switch (shopOptionPrompt) {
+        case "REFILL":
+            if (playerMoney >= 7) {
+                playerHealth += 20;
+                playerMoney -= 7;
+
+                window.alert("Upgraded " + playerName + "'s" + " health by 20pts for 7 monies...\nCurrent Health: " + playerHealth + "\nCurrent Money: " + playerMoney);
+            }
+            else {
+                window.alert("Sorry! You Don't Have Enough Money!");
+            }
+            break;
+
+        case "UPGRADE":
+            if (playerMoney >= 7) {
+                playerAttack += 10;
+                playerMoney -= 7;
+
+                window.alert("Upgraded " + playerName + "'s" + " attack by 20pts for 7 monies...\nNew Attack Value: " + playerAttack + "\nCurrent Money: " + playerMoney);
+            }
+            else {
+                window.alert("Sorry! You Don't Have Enough Money!");
+            }
+            break;
+
+        case "LEAVE":
+            window.alert("Leaving Store...");
+            break;
+        
+        default:
+            window.alert("ERROR: " + "'" + shopOptionPrompt + "'" + " Is Not A Valid Option. Please Try Again!")
+
+            shop();
+            break;
+    }
+};
 
 // START function to call anytime the player wants to play again
 var startGame = function() {
@@ -151,6 +198,16 @@ var startGame = function() {
         enemyHealth = 50;
         window.alert("Welcome to Robot Gladiators!\nROUND: " + (i + 1) + " - " + playerName + " VS " + pickedEnemyName);
         fight (pickedEnemyName);
+
+        //if we're not at the last enemey in the array
+        if (playerHealth > 0 && i < enemyNames.length - 1) {
+            //ask if player wants to go to the shop
+            var storeConfirm = window.confirm ("The Fight Is Over, But You Can Visit the Arena Shop Before You Move On\n\nClick OK to enter the Shop.")
+
+            if (storeConfirm) {
+                shop();
+            }    
+        }
     }
     
 };
