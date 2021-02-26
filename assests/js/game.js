@@ -126,6 +126,7 @@ var startGame = function() {
 
                         if (i === (enemyNames.length - 1)){
                             endGame();
+                            break;
                         }
                         else {
                             break;
