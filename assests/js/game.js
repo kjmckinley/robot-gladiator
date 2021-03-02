@@ -7,10 +7,23 @@ var randomNumber = function(min, max) {
     return value;
 };
 
+var getPlayerName = function () {
+    var name = "";
+
+    name = window.prompt("What is Your Robot's Name?");
+
+    while (name === "" || name === null) {
+        window.alert("ERROR: You Must Enter at Least 1 Charater to Name Your Fighter. Try Again!");
+        name = window.prompt("What is Your Robot's Name?");
+    }
+
+    return name;
+};
+
 
 //Player and Enemy objects with name, info, health, etc... instead of individual variables
 var player = {
-    name: window.prompt("What Is Your Robot's Name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 40,
     money: 10,
