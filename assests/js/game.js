@@ -1,7 +1,6 @@
 // ROBOT GLADIATOR
 
 var playerName = window.prompt("What Is Your Robot's Name?");
-playerName = playerName.toUpperCase();
 console.log(playerName);
 var playerHealth = 100;
 var playerAttack = 40;
@@ -18,11 +17,11 @@ console.log("Name: " + playerName, "Health: " + playerHealth, "AP: " + playerAtt
 
 // end() Function that takes in user response when all fighters or the player is defeated
 var endGame = function() {
-    window.alert("GAME OVER\nCuurent Health: " + playerHealth + "\nRemaining Money: " + playerMoney + "\nTotal Score: " + playerScore);
+    window.alert("GAME OVER\n---------------------\nCurrent Health: " + playerHealth + "\nRemaining Money: " + playerMoney + "\nTotal Score: " + playerScore);
 
     if (playerHealth > 0) {
 
-        window.alert("Great Job! Your Robot Survived... For Now...")
+        window.alert("Great Job! Your Robot " + playerName + ", Has Survived... For Now...")
 
         var playAgain = window.confirm("Would you like to play again?");
 
@@ -41,7 +40,6 @@ var endGame = function() {
         playerScore = 0;
 
         window.alert("Your Robot Fighter " + playerName + "Has Fallen In Battle.\nYou Must Start With a New Fighter");
-        playerName = playerName.toUpperCase();
 
         var playAgain = window.confirm("Would you like to play again?");
 
@@ -61,7 +59,7 @@ var endGame = function() {
 
 // Shop function to ask player if they want to buy health or increase attack.
 var shop =function () {
-    var shopOptionPrompt = window.prompt ("WELCOME TO THE ROBO ARENA SHOP!\nWhile you're here you can select only ONE of the options below:\nREFILL Your Health\nUPGRADE Your Attack\nLEAVE the Shop");
+    var shopOptionPrompt = window.prompt ("WELCOME TO THE ROBO ARENA SHOP!\n------------------------------------------------\nWhile you're here you can select only ONE of the options below:\n\nREFILL Your Health\nUPGRADE Your Attack\nLEAVE the Shop\n");
     console.log("original input: " + shopOptionPrompt);
     shopOptionPrompt = shopOptionPrompt.toUpperCase();
     console.log ("input changed to upper case: " + shopOptionPrompt);
@@ -108,116 +106,14 @@ var shop =function () {
 // START function to call anytime the player wants to play again
 var startGame = function() {
 
-    // This creates a function named "FIGHT"
-    var fight = function(enemyName) {
-
-        while(enemyHealth > 0 && playerHealth > 0) {
-            // Ask user if they would like to FIGHT or SKIP
-            var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle with " + enemyName + "?");
-            promptFight = promptFight.toUpperCase();
-            console.log(playerName + " has decided to " + promptFight + " this battle.");
-
-            // Set conditions for what to do if the user picks FIGHT
-            if(promptFight === "FIGHT") {
-
-                //Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
-                //Make sure health value does not reach below 0. 
-                var damage = randomNumber(playerAttack - 10, playerAttack)
-
-                // give min and max value to generate random attack amount.
-                enemyHealth = Math.max(0, enemyHealth - damage);
-                console.log("not negative Enemy Health: " + enemyHealth);
-
-                // Log a resulting message to the console so we know that it worked.
-                console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
-
-                // Check enemy's health
-                if (enemyHealth <= 0) {
-                    window.alert(enemyName + " has died!");
-                    playerMoney += 10;
-                    playerScore += 100;
-                    window.alert(playerName + " has " + playerHealth + " health left and was awarded 10 monies.")
-                    console.log(playerName + " has " + playerHealth + " health left and was awarded 10 monies.");
-                    
-                    if (i === (enemyNames.length - 1)){
-                        endGame();
-                        break;
-                    }
-                    else {
-                        break;
-                    }
-                   
-                }
-                else {
-                    window.alert(enemyName + " still has " + enemyHealth + " health left.");
-                }
-
-                // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-                //Make sure health value does not reach below 0. generate random damage
-                var damage = randomNumber(enemyAttack - 10, enemyAttack);
-
-                playerHealth = Math.max(0, playerHealth - damage);
-                console.log("not negative Player Health: " + playerHealth);
-
-                // Log a resulting message to the console so we know that it worked.
-                console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
-
-                // Check player's health
-                if (playerHealth <= 0) {
-                    window.alert(playerName + " has died!");
-                    endGame();
-                }
-                else {
-                    window.alert(playerName + " still has " + playerHealth + " health left.");
-                }
-            } 
-
-            // For if the user types in SKIP
-            else if (promptFight === "SKIP") {
-                skipChoice = window.confirm("Are you sure you want to SKIP your fight with " + enemyName + "?" + "\nYour money will reduce by 5.\nCurrent Amount: " + playerMoney)
-
-                // If skipChoice is true
-                if (skipChoice) {
-                    //Make sure playerMoney doesn't go below 0
-                    playerMoney = Math.max(0, playerMoney - 10);
-                    console.log("not negative amount: " + playerMoney);
-
-                    if (playerMoney < 0) {
-                        window.alert(playerName + " has run out of money and can't continue to fight. Try again!");
-                        break;
-                    }
-                    else {
-                        window.alert ("You paid off " + enemyName + ".\nMoney Remaining: " + playerMoney);
-
-                        if (i === (enemyNames.length - 1)){
-                            endGame();
-                            break;
-                        }
-                        else {
-                            break;
-                        }
-                    }     
-                }
-                else {
-                    skipChoice = false;
-                }
-            }
-
-            // For invalid input 
-            else {
-                window.alert ("ERROR: " + "'" + promptFight + "'" + " Is Not Valid Input.\nPlease Try Again!");
-            }
-        }
-    };
-
     // iterate to each enemy in the array and pass the index value to the fight() function
     for (var i = 0; i < enemyNames.length; i++) {
         var pickedEnemyName = enemyNames[i];
 
-        //enemyHealth will generate random whole number health value between 20 and 60
+        //enemyHealth will generate random whole number health value between 40 and 60
         enemyHealth = randomNumber(40, 60);
 
-        window.alert("Welcome to Robot Gladiators!\nROUND: " + (i + 1) + " - " + playerName + " VS " + pickedEnemyName);
+        window.alert("Welcome to Robot Gladiators!\n\nROUND: " + (i + 1) + "\n-------------------\n" + playerName + " VS " + pickedEnemyName);
 
         //Call fight function with newly generated info
         fight (pickedEnemyName);
@@ -229,10 +125,105 @@ var startGame = function() {
 
             if (storeConfirm) {
                 shop();
-            }    
+            } 
         }
+        else {
+            endGame();
+        }   
     }
     
+};
+
+
+  // This creates a function named "FIGHT"
+  var fight = function(enemyName) {
+
+    while(enemyHealth > 0 && playerHealth > 0) {
+        // Ask user if they would like to FIGHT or SKIP
+        var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle with " + enemyName + "?");
+        promptFight = promptFight.toUpperCase();
+        console.log(playerName + " has decided to " + promptFight + " this battle.");
+
+        // Set conditions for what to do if the user picks FIGHT
+        if(promptFight === "FIGHT") {
+
+            //Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
+            //Make sure health value does not reach below 0. 
+            var damage = randomNumber(playerAttack - 10, playerAttack);
+
+            // give min and max value to generate random attack amount.
+            enemyHealth = Math.max(0, enemyHealth - damage);
+            console.log("Not negative Enemy Health: " + enemyHealth);
+
+            // Log a resulting message to the console so we know that it worked.
+            window.alert(playerName + " attacked " + enemyName + " for " + damage + " damage.\n" + enemyName + " now has " + enemyHealth + " health left." );
+            console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
+
+            // Check enemy's health
+            if (enemyHealth <= 0) {
+                window.alert("VICTORY!\n-------------\n" + enemyName + " Has Been Defeated!");
+                playerMoney += 10;
+                playerScore += 100;
+                window.alert(playerName + " has " + playerHealth + " health left and was awarded 10 monies.");
+                console.log(playerName + " has " + playerHealth + " health left and was awarded 10 monies.");
+                
+                break;
+            }
+            else {
+                window.alert(enemyName + " still has " + enemyHealth + " health left.");
+            }
+
+            // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
+            //Make sure health value does not reach below 0. generate random damage
+            var damage = randomNumber(enemyAttack - 10, enemyAttack);
+
+            playerHealth = Math.max(0, playerHealth - damage);
+            console.log("Not negative Player Health: " + playerHealth);
+
+            // Log a resulting message to the console so we know that it worked.
+            window.alert(enemyName + " attacked " + playerName + " for " + damage + " damage.\n" + playerName + " now has " + playerHealth + " health left." );
+            console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
+
+            // Check player's health
+            if (playerHealth <= 0) {
+                window.alert("DEFEAT...\n-------------\n" + playerName + " Has Been Fallen in Battle...");
+                endGame();
+            }
+            else {
+                window.alert(playerName + " still has " + playerHealth + " health left.");
+            }
+        } 
+
+        // For if the user types in SKIP
+        else if (promptFight === "SKIP") {
+            skipChoice = window.confirm("Are you sure you want to SKIP your fight with " + enemyName + "?" + "\nYour money will reduce by 5.\nCurrent Amount: " + playerMoney)
+
+            // If skipChoice is true
+            if (skipChoice) {
+                //Make sure playerMoney doesn't go below 0
+                playerMoney = Math.max(0, playerMoney - 10);
+                console.log("not negative Money amount: " + playerMoney);
+
+                if (playerMoney < 0) {
+                    window.alert(playerName + " has run out of money and can't continue to fight. Try again!");
+                    break;
+                }
+                else {
+                    window.alert ("You paid off " + enemyName + ".\nMoney Remaining: " + playerMoney);
+
+                    break;
+                }     
+            }
+            else {
+                skipChoice = false;
+            }
+        }
+
+        // For invalid input 
+        else {
+            window.alert ("ERROR: " + "'" + promptFight + "'" + " Is Not Valid Input.\nPlease Try Again!");
+        }
+    }
 };
 
 
@@ -241,7 +232,7 @@ var randomNumber = function(min, max) {
     console.log("Value of Random Number: " + value);
 
     return value;
-}
+};
 
 // Calls the startGame() function once the page has loaded
 startGame();
