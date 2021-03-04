@@ -13,7 +13,7 @@ var getPlayerName = function () {
     name = window.prompt("What is Your Robot's Name?");
 
     while (name === "" || name === null) {
-        window.alert("ERROR: You Must Enter at Least 1 Charater to Name Your Fighter. Try Again!");
+        window.alert("ERROR: You Must Enter at Least 1 Character to Name Your Fighter. Try Again!");
         name = window.prompt("What is Your Robot's Name?");
     }
 
@@ -134,7 +134,7 @@ var endGame = function() {
 
     if (player.health > 0) {
 
-        window.alert("Great Job! Your Robot " + player.name + ", Has Survived... For Now...")
+        window.alert("Great Job! Your Robot, " + player.name + " Has Survived... For Now...")
 
         var playAgain = window.confirm("Would you like to play again?");
 
@@ -170,22 +170,22 @@ var endGame = function() {
 
 // Shop function to ask player if they want to buy health or increase attack.
 var shop =function () {
-    var shopOptionPrompt = window.prompt ("WELCOME TO THE ROBO ARENA SHOP!\n------------------------------------------------\nWhile you're here you can select only ONE of the options below:\n\nREFILL Your Health\nUPGRADE Your Attack\nLEAVE the Shop\n");
+    var shopOptionPrompt = window.prompt ("WELCOME TO THE ROBO ARENA SHOP!\n------------------------------------------------\nWhile you're here you can select only ONE of the options below:\n\n1. REFILL Your Health\n2. UPGRADE Your Attack\n3. LEAVE the Shop\n");
     console.log("original input: " + shopOptionPrompt);
     shopOptionPrompt = shopOptionPrompt.toUpperCase();
     console.log ("input changed to upper case: " + shopOptionPrompt);
 
     // using a SWITCH statement for practice
     switch (shopOptionPrompt) {
-        case "REFILL":
+        case "REFILL", "1":
             player.refillHealth();
             break;
 
-        case "UPGRADE":
+        case "UPGRADE", "2":
             player.upgradeAttack();
             break;
 
-        case "LEAVE":
+        case "LEAVE", "3":
             window.alert("Leaving Store...");
             break;
         
@@ -198,17 +198,53 @@ var shop =function () {
 };
 
 
+
+// var fightOrSkip = function() {
+//     // ask player if thet want to fight or skip
+//     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle with " + enemy.name + "?");
+//     promptFight = promptFight.toUpperCase();
+//     console.log(player.name + " has decided to " + promptFight + " this battle.");
+
+
+
+//     if (promptFight === "SKIP") {
+//         var skipChoice = window.confirm("Are you sure you want to SKIP your fight with " + enemyFighter.name + "?" + "\nYour money will reduce by 5.\nCurrent Amount: " + player.money)
+
+//         // If skipChoice is true
+//         if (skipChoice) {
+//             //Make sure player.money doesn't go below 0
+//             player.money = Math.max(0, player.money - 10);
+//             console.log("not negative Money amount: " + player.money);
+
+//             if (player.money < 0) {
+//                 window.alert(player.name + " has run out of money and can't continue to fight. Try again!");
+//                 break;
+//             }
+//             else {
+//                 window.alert ("You paid off " + enemy.name + ".\nMoney Remaining: " + player.money);
+
+//                 break;
+//             }     
+//         }
+//         else {
+//             skipChoice = false;
+//         }
+//     }
+
+// };
+
+
   // This creates a function named "FIGHT"
   var fight = function(enemyFighter) {
 
     while(enemyFighter.health > 0 && player.health > 0) {
         // Ask user if they would like to FIGHT or SKIP
-        var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle with " + enemyFighter.name + "?");
+        var promptFight = window.prompt(enemyFighter.name.toUpperCase() + " WANTS TO FIGHT!\n----------------------------\n\nWhat Would You Like To Do?\n1. FIGHT\n2. SKIP\n");
         promptFight = promptFight.toUpperCase();
         console.log(player.name + " has decided to " + promptFight + " this battle.");
 
         // Set conditions for what to do if the user picks FIGHT
-        if(promptFight === "FIGHT") {
+        if(promptFight === "FIGHT" || promptFight === "1") {
 
             //Subtract the value of `player.attack` from the value of `enemy.health` and use that result to update the value in the `enemy.health` variable
             //Make sure health value does not reach below 0. 
@@ -260,8 +296,8 @@ var shop =function () {
         } 
 
         // For if the user types in SKIP
-        else if (promptFight === "SKIP") {
-            skipChoice = window.confirm("Are you sure you want to SKIP your fight with " + enemyFighter.name + "?" + "\nYour money will reduce by 5.\nCurrent Amount: " + player.money)
+        else if (promptFight === "SKIP" || promptFight === "2") {
+            var skipChoice = window.confirm("Are you sure you want to SKIP your fight with " + enemyFighter.name + "?" + "\nYour money will reduce by 5.\nCurrent Amount: " + player.money)
 
             // If skipChoice is true
             if (skipChoice) {
@@ -290,7 +326,6 @@ var shop =function () {
         }
     }
 };
-
 
 
 
