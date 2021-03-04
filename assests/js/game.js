@@ -177,15 +177,15 @@ var shop =function () {
 
     // using a SWITCH statement for practice
     switch (shopOptionPrompt) {
-        case "REFILL", "1":
+        case "REFILL" || "1":
             player.refillHealth();
             break;
 
-        case "UPGRADE", "2":
+        case "UPGRADE" || "2":
             player.upgradeAttack();
             break;
 
-        case "LEAVE", "3":
+        case "LEAVE" || "3":
             window.alert("Leaving Store...");
             break;
         
@@ -237,6 +237,12 @@ var shop =function () {
   // This creates a function named "FIGHT"
   var fight = function(enemyFighter) {
 
+    // Randomly select which player goes first
+    var playerTurn = true;
+    if(Math.random() > 0.5) {
+        playerTurn = false;
+    }
+
     while(enemyFighter.health > 0 && player.health > 0) {
         // Ask user if they would like to FIGHT or SKIP
         var promptFight = window.prompt(enemyFighter.name.toUpperCase() + " WANTS TO FIGHT!\n----------------------------\n\nWhat Would You Like To Do?\n1. FIGHT\n2. SKIP\n");
@@ -245,6 +251,8 @@ var shop =function () {
 
         // Set conditions for what to do if the user picks FIGHT
         if(promptFight === "FIGHT" || promptFight === "1") {
+
+            
 
             //Subtract the value of `player.attack` from the value of `enemy.health` and use that result to update the value in the `enemy.health` variable
             //Make sure health value does not reach below 0. 
