@@ -130,7 +130,23 @@ var startGame = function() {
 
 // end() Function that takes in user response when all fighters or the player is defeated
 var endGame = function() {
+
     window.alert("GAME OVER\n---------------------\nCurrent Health: " + player.health + "\nRemaining Money: " + player.money + "\nTotal Score: " + player.score);
+
+    var highscore = localStorage.getItem("highscore");
+    if (highscore === null) {
+        highscore =0;
+    }
+
+    if (player.score > highscore) {
+        localStorage.setItem("highscore", player.score);
+        localStorage.setItem("name: ", player.name);
+
+        window.alert(player.name + " Now Has the NEW HIGH SCORE!" + player.score);
+    }
+    else {
+        window.alert(player.name + " Came Short of the Currrent High Score of: " + player.score + ".\nTry Again! Don't Give Up Now!");
+    }
 
     if (player.health > 0) {
 
@@ -204,6 +220,7 @@ var shop =function () {
 //     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle with " + enemy.name + "?");
 //     promptFight = promptFight.toUpperCase();
 //     console.log(player.name + " has decided to " + promptFight + " this battle.");
+//      return promptFight;
 
 
 
@@ -236,12 +253,11 @@ var shop =function () {
 
   // This creates a function named "FIGHT"
   var fight = function(enemyFighter) {
-
-    // Randomly select which player goes first
-    var playerTurn = true;
-    if(Math.random() > 0.5) {
-        playerTurn = false;
-    }
+ // Randomly select which player goes first
+  var playerTurn = true;
+  if(Math.random() > 0.5) {
+    playerTurn = false;
+}
 
     while(enemyFighter.health > 0 && player.health > 0) {
         // Ask user if they would like to FIGHT or SKIP
