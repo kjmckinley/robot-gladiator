@@ -142,10 +142,10 @@ var endGame = function() {
         localStorage.setItem("highscore", player.score);
         localStorage.setItem("name: ", player.name);
 
-        window.alert(player.name + " Now Has the NEW HIGH SCORE!" + player.score);
+        window.alert(player.name + " Now Has the NEW HIGH SCORE: " + player.score);
     }
     else {
-        window.alert(player.name + " Came Short of the Currrent High Score of: " + player.score + ".\nTry Again! Don't Give Up Now!");
+        window.alert(player.name + " Came Short of the Currrent High Score." + ".\nTry Again! Don't Give Up Now!");
     }
 
     if (player.health > 0) {
